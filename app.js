@@ -13,9 +13,10 @@
 //for (var i = 0; i < storeHours.length; i++) {
   //console.log(storeHours[i]);
 //}
+
 var pikePlace = {
 
-  location: 'Pike Place',
+  location: 'Pike Place Market',
   custMin: 14,
   custMax: 35,
   averageCupsPerCust: 1.2,
@@ -25,12 +26,14 @@ var pikePlace = {
   custPerDay: 0,
   cupsPerHour: [],
   cupsPerDay:0,
-  poundsPerHour: [],
-  poundsPerDay: 0,
+  toGoPoundsPerHour: [],
+  toGoPoundsPerDay: 0,
   beansNeededHourlyToMakeCup: [],
   beansPerDay:0,
+  totalPoundNeededDaily:0,
   staffPerHour: [],
-  staffPerDay: 0,
+  stringValue: [],
+
 
   randomCustNumber: function() {
     return Math.floor(Math.random() * (this.custMax - this.custMin) + this.custMin);
@@ -52,28 +55,246 @@ var pikePlace = {
 
   generatePoundsNumber: function() {
     for (var i = 0; i < this.storeHours.length; i++) {
-      this.poundsPerHour.push(this.custPerHour[i] * this.averagePoundsPerCust);
-      this.poundsPerDay += this.poundsPerHour[i];
+      this.toGoPoundsPerHour.push(this.custPerHour[i] * this.averagePoundsPerCust);
+      this.toGoPoundsPerDay += this.toGoPoundsPerHour[i];
     }
   },
 
   generateBeanNumber: function() {
     for (var i = 0; i < this.storeHours.length; i++) {
-      this.beansNeededHourlyToMakeCup.push((this.cupsPerHour[i] / 16) * this.custPerHour[i]);
+      this.beansNeededHourlyToMakeCup.push((this.cupsPerHour[i] / 16));
       this.beansPerDay += this.beansNeededHourlyToMakeCup[i];
     }
+  },
+
+  calcTotalPoundNeededDaily: function() {
+    this.totalPoundNeededDaily = (this.beansPerDay + this.toGoPoundsPerDay);
   },
 
   generateStaffNumber: function() {
     for (var i = 0; i < this.storeHours.length; i++) {
       this.staffPerHour.push(Math.ceil(this.custPerHour[i] / 30));
-      this.staffPerDay += this.staffPerHour[i];
     }
-  }
+  },
+  printString: function () {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.stringValue.push(this.storeHours[i] + ' ' + (this.beansNeededHourlyToMakeCup[i] + this.toGoPoundsPerHour[i]).toFixed(1) + 'lbs [' + this.custPerHour[i] + ' customers, ' + this.cupsPerHour[i].toFixed(1) + ' cups (' + this.beansNeededHourlyToMakeCup[i].toFixed(1) + ' lbs), ' + this.toGoPoundsPerHour[i].toFixed(1) + ' lbs to-go]');
+    }
+  },
+  totalCustomers: function () {
+    return 'Total customers at ' + this.location + ':' + this.custPerDay;
+  },
+  totalCups: function () {
+    return 'Total cups sold at ' + this.location + ':' + this.cupsPerDay.toFixed(1);
+  },
+
+  totalToGoPounds: function() {
+    return 'Total to-go pound packages sold at ' + this.location + ':' + this.toGoPoundsPerDay.toFixed(1);
+  },
+  totalPoundsOfBeansNeeded: function() {
+    return 'Total pounds of beans needed at ' + this.location + ':' + (this.totalPoundsOfBeansNeeded + this.toGoPoundsPerDay.toFixed(1));
+  },
 };
+
 pikePlace.randomCustNumber();
 pikePlace.generateCustNumber();
 pikePlace.generateCupsNumber();
 pikePlace.generatePoundsNumber();
 pikePlace.generateBeanNumber();
+pikePlace.calcTotalPoundNeededDaily();
 pikePlace.generateStaffNumber();
+pikePlace.printString();
+pikePlace.totalCustomers();
+pikePlace.totalCups();
+pikePlace.totalToGoPounds();
+pikePlace.totalPoundsOfBeansNeeded();
+
+var capitolHill = {
+
+  location: 'Capitol Hill',
+  custMin: 12,
+  custMax: 28,
+  averageCupsPerCust: 3.2,
+  averagePoundsPerCust: 0.03,
+  storeHours: ['6:00am:','7:00am:', '8:00am:', '9:00am:', '10:00am:', '11:00am:','12:00pm:','1:00pm:','2:00pm:','3:00pm:','4:00pm:', '5:00pm:','6:00pm:', '7:00pm:', '8:00pm:'],
+  custPerHour: [],
+  custPerDay: 0,
+  cupsPerHour: [],
+  cupsPerDay:0,
+  toGoPoundsPerHour: [],
+  toGoPoundsPerDay: 0,
+  beansNeededHourlyToMakeCup: [],
+  beansPerDay:0,
+  totalPoundNeededDaily:0,
+  staffPerHour: [],
+  stringValue: [],
+
+
+  randomCustNumber: function() {
+    return Math.floor(Math.random() * (this.custMax - this.custMin) + this.custMin);
+  },
+
+  generateCustNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.custPerHour.push(this.randomCustNumber(this.custMin, this.custMax));
+      this.custPerDay += this.custPerHour[i];
+    }
+  },
+
+  generateCupsNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.cupsPerHour.push(this.custPerHour[i] * this.averageCupsPerCust);
+      this.cupsPerDay += this.cupsPerHour[i];
+    }
+  },
+
+  generatePoundsNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.toGoPoundsPerHour.push(this.custPerHour[i] * this.averagePoundsPerCust);
+      this.toGoPoundsPerDay += this.toGoPoundsPerHour[i];
+    }
+  },
+
+  generateBeanNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.beansNeededHourlyToMakeCup.push((this.cupsPerHour[i] / 16));
+      this.beansPerDay += this.beansNeededHourlyToMakeCup[i];
+    }
+  },
+
+  calcTotalPoundNeededDaily: function() {
+    this.totalPoundNeededDaily = (this.beansPerDay + this.toGoPoundsPerDay);
+  },
+
+  generateStaffNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.staffPerHour.push(Math.ceil(this.custPerHour[i] / 30));
+    }
+  },
+  printString: function () {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.stringValue.push(this.storeHours[i] + ' ' + (this.beansNeededHourlyToMakeCup[i] + this.toGoPoundsPerHour[i]).toFixed(1) + 'lbs [' + this.custPerHour[i] + ' customers, ' + this.cupsPerHour[i].toFixed(1) + ' cups (' + this.beansNeededHourlyToMakeCup[i].toFixed(1) + ' lbs), ' + this.toGoPoundsPerHour[i].toFixed(1) + ' lbs to-go]');
+    }
+  },
+  totalCustomers: function () {
+    return 'Total customers at ' + this.location + ':' + this.custPerDay;
+  },
+  totalCups: function () {
+    return 'Total cups sold at ' + this.location + ':' + this.cupsPerDay.toFixed(1);
+  },
+
+  totalToGoPounds: function() {
+    return 'Total to-go pound packages sold at ' + this.location + ':' + this.toGoPoundsPerDay.toFixed(1);
+  },
+  totalPoundsOfBeansNeeded: function() {
+    return 'Total pounds of beans needed at ' + this.location + ':' + (this.totalPoundsOfBeansNeeded + this.toGoPoundsPerDay.toFixed(1));
+  },
+};
+
+capitolHill.randomCustNumber();
+capitolHill.generateCustNumber();
+capitolHill.generateCupsNumber();
+capitolHill.generatePoundsNumber();
+capitolHill.generateBeanNumber();
+capitolHill.calcTotalPoundNeededDaily();
+capitolHill.generateStaffNumber();
+capitolHill.printString();
+capitolHill.totalCustomers();
+capitolHill.totalCups();
+capitolHill.totalToGoPounds();
+capitolHill.totalPoundsOfBeansNeeded();
+
+var sPL = {
+
+  location: 'Seattle Public Library',
+  custMin: 9,
+  custMax: 45,
+  averageCupsPerCust: 2.6,
+  averagePoundsPerCust: 0.02,
+  storeHours: ['6:00am:','7:00am:', '8:00am:', '9:00am:', '10:00am:', '11:00am:','12:00pm:','1:00pm:','2:00pm:','3:00pm:','4:00pm:', '5:00pm:','6:00pm:', '7:00pm:', '8:00pm:'],
+  custPerHour: [],
+  custPerDay: 0,
+  cupsPerHour: [],
+  cupsPerDay:0,
+  toGoPoundsPerHour: [],
+  toGoPoundsPerDay: 0,
+  beansNeededHourlyToMakeCup: [],
+  beansPerDay:0,
+  totalPoundNeededDaily:0,
+  staffPerHour: [],
+  stringValue: [],
+
+
+  randomCustNumber: function() {
+    return Math.floor(Math.random() * (this.custMax - this.custMin) + this.custMin);
+  },
+
+  generateCustNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.custPerHour.push(this.randomCustNumber(this.custMin, this.custMax));
+      this.custPerDay += this.custPerHour[i];
+    }
+  },
+
+  generateCupsNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.cupsPerHour.push(this.custPerHour[i] * this.averageCupsPerCust);
+      this.cupsPerDay += this.cupsPerHour[i];
+    }
+  },
+
+  generatePoundsNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.toGoPoundsPerHour.push(this.custPerHour[i] * this.averagePoundsPerCust);
+      this.toGoPoundsPerDay += this.toGoPoundsPerHour[i];
+    }
+  },
+
+  generateBeanNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.beansNeededHourlyToMakeCup.push((this.cupsPerHour[i] / 16));
+      this.beansPerDay += this.beansNeededHourlyToMakeCup[i];
+    }
+  },
+
+  calcTotalPoundNeededDaily: function() {
+    this.totalPoundNeededDaily = (this.beansPerDay + this.toGoPoundsPerDay);
+  },
+
+  generateStaffNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.staffPerHour.push(Math.ceil(this.custPerHour[i] / 30));
+    }
+  },
+  printString: function () {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.stringValue.push(this.storeHours[i] + ' ' + (this.beansNeededHourlyToMakeCup[i] + this.toGoPoundsPerHour[i]).toFixed(1) + 'lbs [' + this.custPerHour[i] + ' customers, ' + this.cupsPerHour[i].toFixed(1) + ' cups (' + this.beansNeededHourlyToMakeCup[i].toFixed(1) + ' lbs), ' + this.toGoPoundsPerHour[i].toFixed(1) + ' lbs to-go]');
+    }
+  },
+  totalCustomers: function () {
+    return 'Total customers at ' + this.location + ':' + this.custPerDay;
+  },
+  totalCups: function () {
+    return 'Total cups sold at ' + this.location + ':' + this.cupsPerDay.toFixed(1);
+  },
+
+  totalToGoPounds: function() {
+    return 'Total to-go pound packages sold at ' + this.location + ':' + this.toGoPoundsPerDay.toFixed(1);
+  },
+  totalPoundsOfBeansNeeded: function() {
+    return 'Total pounds of beans needed at ' + this.location + ':' + (this.totalPoundsOfBeansNeeded + this.toGoPoundsPerDay.toFixed(1));
+  },
+};
+
+sPL.randomCustNumber();
+sPL.generateCustNumber();
+sPL.generateCupsNumber();
+sPL.generatePoundsNumber();
+sPL.generateBeanNumber();
+sPL.calcTotalPoundNeededDaily();
+sPL.generateStaffNumber();
+sPL.printString();
+sPL.totalCustomers();
+sPL.totalCups();
+sPL.totalToGoPounds();
+sPL.totalPoundsOfBeansNeeded();
