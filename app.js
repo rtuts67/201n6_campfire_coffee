@@ -10,27 +10,70 @@
 //childPikePlace.textContent = 'Schedule of Output';
 //var parentPikePlace = document.getElementById('parentPikePlace');
 //parentPikePlace.appendChild(childPikePlaceUl);
-var storeHours = ['6:00am:','7:00am:', '8:00am:', '9:00am:', '10:00am:', '11:00am:','12:00pm:','1:00pm:','2:00pm:','3:00pm:','4:00pm:', '5:00pm:','6:00pm:', '7:00pm:', '8:00pm:'];
-for (var i = 0; i < storeHours.length; i++) {
-  console.log(storeHours[i]);
-}
+//for (var i = 0; i < storeHours.length; i++) {
+  //console.log(storeHours[i]);
+//}
 var pikePlace = {
-  averageCustomerNumber: function() {
-    return Math.floor(Math.random() * (this.custMax - this.custMin) + this.custMin);
-  },
+
+  location: 'Pike Place',
   custMin: 14,
   custMax: 35,
-  averageCupsPerHour: function() {
-    var cupsPerCustomer = 1.2;
-    return cupsPerCustomer * this.averageCustomerNumber;
+  averageCupsPerCust: 1.2,
+  averagePoundsPerCust: 0.34,
+  storeHours: ['6:00am:','7:00am:', '8:00am:', '9:00am:', '10:00am:', '11:00am:','12:00pm:','1:00pm:','2:00pm:','3:00pm:','4:00pm:', '5:00pm:','6:00pm:', '7:00pm:', '8:00pm:'],
+  custPerHour: [],
+  custPerDay: 0,
+  cupsPerHour: [],
+  cupsPerDay:0,
+  poundsPerHour: [],
+  poundsPerDay: 0,
+  beansNeededHourlyToMakeCup: [],
+  beansPerDay:0,
+  staffPerHour: [],
+  staffPerDay: 0,
+
+  randomCustNumber: function() {
+    return Math.floor(Math.random() * (this.custMax - this.custMin) + this.custMin);
   },
-  averageBeansPurchased: function () {
-    var beansToGo = .34;
-    return beansToGo * this.averageCustomerNumber;
+
+  generateCustNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.custPerHour.push(this.randomCustNumber(this.custMin, this.custMax));
+      this.custPerDay += this.custPerHour[i];
+    }
   },
-  AmountofBeansForecast: function() {
-    return averageBeansPurchased + (this.averageCupsPerHour / 16);
+
+  generateCupsNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.cupsPerHour.push(this.custPerHour[i] * this.averageCupsPerCust);
+      this.cupsPerDay += this.cupsPerHour[i];
+    }
   },
+
+  generatePoundsNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.poundsPerHour.push(this.custPerHour[i] * this.averagePoundsPerCust);
+      this.poundsPerDay += this.poundsPerHour[i];
+    }
+  },
+
+  generateBeanNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.beansNeededHourlyToMakeCup.push((this.cupsPerHour[i] / 16) * this.custPerHour[i]);
+      this.beansPerDay += this.beansNeededHourlyToMakeCup[i];
+    }
+  },
+
+  generateStaffNumber: function() {
+    for (var i = 0; i < this.storeHours.length; i++) {
+      this.staffPerHour.push(Math.ceil(this.custPerHour[i] / 30));
+      this.staffPerDay += this.staffPerHour[i];
+    }
+  }
 };
-pikePlace;
-// I didn't get to finish this - I am confused so I am going to submit for partial credit and resubmit it later when I better understand the methods
+pikePlace.randomCustNumber();
+pikePlace.generateCustNumber();
+pikePlace.generateCupsNumber();
+pikePlace.generatePoundsNumber();
+pikePlace.generateBeanNumber();
+pikePlace.generateStaffNumber();
