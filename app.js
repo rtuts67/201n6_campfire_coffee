@@ -114,7 +114,25 @@ for (var i = 0; i < pikePlace.storeHours.length; i++) {
   childPikePlaceli.textContent = pikePlace.stringValue[i];
   parentPikePlaceUl.appendChild(childPikePlaceli);
 }
+var parentPPTotalCustomers = document.getElementById('pikePlaceUl');
+var childPikePlaceTotalCustomersli = document.createElement('li');
+childPikePlaceTotalCustomersli.textContent = pikePlace.totalCustomers();
+parentPPTotalCustomers.appendChild(childPikePlaceTotalCustomersli);
 
+var parentPPTotalCups = document.getElementById('pikePlaceUl');
+var childPikePlaceTotalCupsli = document.createElement('li');
+childPikePlaceTotalCupsli.textContent = pikePlace.totalCups();
+parentPPTotalCups.appendChild(childPikePlaceTotalCupsli);
+
+var parentPPTotalToGoPounds = document.getElementById('pikePlaceUl');
+var childPikePlaceTotalToGoPoundsli = document.createElement('li');
+childPikePlaceTotalToGoPoundsli.textContent = pikePlace.totalToGoPounds();
+parentPPTotalToGoPounds.appendChild(childPikePlaceTotalToGoPoundsli);
+
+var parentPPTotalPoundsOfBeansNeededUl = document.getElementById('pikePlaceUl');
+var childPikePlaceTotalPoundsOfBeansNeededli = document.createElement('li');
+childPikePlaceTotalPoundsOfBeansNeededli.textContent = pikePlace.totalPoundsOfBeansNeeded();
+parentPPTotalPoundsOfBeansNeededUl.appendChild(childPikePlaceTotalPoundsofBeansNeededli);
 
 var capitolHill = {
 
@@ -211,6 +229,34 @@ capitolHill.totalCups();
 capitolHill.totalToGoPounds();
 capitolHill.totalPoundsOfBeansNeeded();
 
+var parentcapitolHillUl = document.getElementById('capitolHillUl');
+for (var x = 0; x < capitolHill.storeHours.length; x++) {
+  var capitollHillli = document.createElement('li');
+  capitollHillli.textContent = capitollHillli.stringValue[x];
+  parentcapitolHillUl.appendChild(capitollHillli);
+}
+
+var parentCHTotalCustomers = document.getElementById('capitolHillUl');
+var childCHTotalCustomersli = document.createElement('li');
+childCHTotalCustomersli.textContent = capitolHill.totalCustomers();
+parentCHTotalCustomers.appendChild(childCHTotalCustomersli);
+
+var parentCHTotalCups = document.getElementById('capitolHillUl');
+var childCHTotalCupsli = document.createElement('li');
+childCHTotalCupsli.textContent = capitolHill.totalCups();
+parentCHTotalCups.appendChild(childCHTotalCupsli);
+
+var parentCHTotalToGoPounds = document.getElementById('capitolHillUl');
+var childCHTotalToGoPoundsli = document.createElement('li');
+childCHTotalToGoPoundsli.textContent = capitolHill.totalToGoPounds();
+parentCHTotalToGoPounds.appendChild(childCHTotalToGoPoundsli);
+
+var parentCHTotalPoundsOfBeansNeededUl = document.getElementById('capitolHillUl');
+var childCHTotalPoundsOfBeansNeededli = document.createElement('li');
+childCHTotalPoundsOfBeansNeededli.textContent = capitolHill.totalPoundsOfBeansNeeded();
+parentCHTotalPoundsOfBeansNeededUl.appendChild(childCHTotalPoundsOfBeansNeededli);
+
+
 var sPL = {
 
   location: 'Seattle Public Library',
@@ -306,6 +352,8 @@ sPL.totalCups();
 sPL.totalToGoPounds();
 sPL.totalPoundsOfBeansNeeded();
 
+
+
 var sLU = {
 
   location: 'South Lake Union',
@@ -400,6 +448,13 @@ sLU.totalCustomers();
 sLU.totalCups();
 sLU.totalToGoPounds();
 sLU.totalPoundsOfBeansNeeded();
+
+var parentSLUUl = document.getElementById('sLUUl');
+for (var i = 0; i < pikePlace.storeHours.length; i++) {
+  var sLUli = document.createElement('li');
+  sLUli.textContent = sLU.stringValue[i];
+  parentPikePlaceUl.appendChild(childPikePlaceli);
+}
 
 var sTAirport = {
 
