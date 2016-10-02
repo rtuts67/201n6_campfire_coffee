@@ -1,17 +1,16 @@
 'use strict';
-//
 //var childPikePlaceUl = document.createElement('ul');
 
-//for (var i = 0; i < storeHours.length; i++) {
-  //var liPikePlace = document.createElement('li');
-  //liPikePlace.textContent = storeHours[i];
-  //childPikePlace.appendChild(liPikePlace);
+//for (var i = 0; i < coffeeShopArray.length; i++) {
+//  var liPikePlace = document.createElement('li');
+//  liPikePlace.textContent = storeHours[i];
+//  childPikePlace.appendChild(liPikePlace);
 //}
 //childPikePlace.textContent = 'Schedule of Output';
 //var parentPikePlace = document.getElementById('parentPikePlace');
 //parentPikePlace.appendChild(childPikePlaceUl);
 //for (var i = 0; i < storeHours.length; i++) {
-  //console.log(storeHours[i]);
+//  console.log(storeHours[i]);
 //}
 
 var pikePlace = {
@@ -108,6 +107,14 @@ pikePlace.totalCustomers();
 pikePlace.totalCups();
 pikePlace.totalToGoPounds();
 pikePlace.totalPoundsOfBeansNeeded();
+
+var parentPikePlaceUl = document.getElementById('pikePlaceUl');
+for (var i = 0; i < pikePlace.storeHours.length; i++) {
+  var childPikePlaceli = document.createElement('li');
+  childPikePlaceli.textContent = pikePlace.stringValue[i];
+  parentPikePlaceUl.appendChild(childPikePlaceli);
+}
+
 
 var capitolHill = {
 
