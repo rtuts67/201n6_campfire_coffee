@@ -91,7 +91,7 @@ var pikePlace = {
     return 'Total to-go pound packages sold at ' + this.location + ':' + this.toGoPoundsPerDay.toFixed(1);
   },
   totalPoundsOfBeansNeeded: function() {
-    return 'Total pounds of beans needed at ' + this.location + ':' + (this.totalPoundsOfBeansNeeded + this.toGoPoundsPerDay.toFixed(1));
+    return 'Total pounds of beans needed at ' + this.location + ':' + (this.beansPerDay + this.toGoPoundsPerDay).toFixed(1);
   },
 };
 
@@ -132,7 +132,7 @@ parentPPTotalToGoPounds.appendChild(childPikePlaceTotalToGoPoundsli);
 var parentPPTotalPoundsOfBeansNeededUl = document.getElementById('pikePlaceUl');
 var childPikePlaceTotalPoundsOfBeansNeededli = document.createElement('li');
 childPikePlaceTotalPoundsOfBeansNeededli.textContent = pikePlace.totalPoundsOfBeansNeeded();
-parentPPTotalPoundsOfBeansNeededUl.appendChild(childPikePlaceTotalPoundsofBeansNeededli);
+parentPPTotalPoundsOfBeansNeededUl.appendChild(childPikePlaceTotalPoundsOfBeansNeededli);
 
 var capitolHill = {
 
@@ -150,7 +150,6 @@ var capitolHill = {
   toGoPoundsPerDay: 0,
   beansNeededHourlyToMakeCup: [],
   beansPerDay:0,
-  totalPoundNeededDaily:0,
   staffPerHour: [],
   stringValue: [],
 
@@ -212,7 +211,7 @@ var capitolHill = {
     return 'Total to-go pound packages sold at ' + this.location + ':' + this.toGoPoundsPerDay.toFixed(1);
   },
   totalPoundsOfBeansNeeded: function() {
-    return 'Total pounds of beans needed at ' + this.location + ':' + (this.totalPoundsOfBeansNeeded + this.toGoPoundsPerDay.toFixed(1));
+    return 'Total pounds of beans needed at ' + this.location + ':' + (this.beansPerDay + this.toGoPoundsPerDay).toFixed(1);
   },
 };
 
@@ -232,7 +231,7 @@ capitolHill.totalPoundsOfBeansNeeded();
 var parentcapitolHillUl = document.getElementById('capitolHillUl');
 for (var x = 0; x < capitolHill.storeHours.length; x++) {
   var capitollHillli = document.createElement('li');
-  capitollHillli.textContent = capitollHillli.stringValue[x];
+  capitollHillli.textContent = capitolHill.stringValue[x];
   parentcapitolHillUl.appendChild(capitollHillli);
 }
 
@@ -335,7 +334,7 @@ var sPL = {
     return 'Total to-go pound packages sold at ' + this.location + ':' + this.toGoPoundsPerDay.toFixed(1);
   },
   totalPoundsOfBeansNeeded: function() {
-    return 'Total pounds of beans needed at ' + this.location + ':' + (this.totalPoundsOfBeansNeeded + this.toGoPoundsPerDay.toFixed(1));
+    return 'Total pounds of beans needed at ' + this.location + ':' + (this.beansPerDay + this.toGoPoundsPerDay).toFixed(1);
   },
 };
 
@@ -352,6 +351,31 @@ sPL.totalCups();
 sPL.totalToGoPounds();
 sPL.totalPoundsOfBeansNeeded();
 
+var parentSPLUl = document.getElementById('sPLUl');
+for (var y = 0; y < sPL.storeHours.length; y++) {
+  var childSPLli = document.createElement('li');
+  childSPLli.textContent = sPL.stringValue[y];
+  parentSPLUl.appendChild(childSPLli);
+}
+var parentSPLTotalCustomers = document.getElementById('sPLUl');
+var childSPLTotalCustomersli = document.createElement('li');
+childSPLTotalCustomersli.textContent = sPL.totalCustomers();
+parentSPLTotalCustomers.appendChild(childPikePlaceTotalCustomersli);
+
+var parentSPLTotalCups = document.getElementById('sPLUl');
+var childSPLTotalCupsli = document.createElement('li');
+childSPLTotalCupsli.textContent = sPL.totalCups();
+parentSPLTotalCups.appendChild(childSPLTotalCupsli);
+
+var parentSPLTotalToGoPounds = document.getElementById('sPLUl');
+var childSPLTotalToGoPoundsli = document.createElement('li');
+childSPLTotalToGoPoundsli.textContent = sPL.totalToGoPounds();
+parentSPLTotalToGoPounds.appendChild(childSPLTotalToGoPoundsli);
+
+var parentSPLTotalPoundsOfBeansNeededUl = document.getElementById('sPLUl');
+var childSPLTotalPoundsOfBeansNeededli = document.createElement('li');
+childSPLTotalPoundsOfBeansNeededli.textContent = sPL.totalPoundsOfBeansNeeded();
+parentSPLTotalPoundsOfBeansNeededUl.appendChild(childSPLTotalPoundsOfBeansNeededli);
 
 
 var sLU = {
@@ -432,7 +456,7 @@ var sLU = {
     return 'Total to-go pound packages sold at ' + this.location + ':' + this.toGoPoundsPerDay.toFixed(1);
   },
   totalPoundsOfBeansNeeded: function() {
-    return 'Total pounds of beans needed at ' + this.location + ':' + (this.totalPoundsOfBeansNeeded + this.toGoPoundsPerDay.toFixed(1));
+    return 'Total pounds of beans needed at ' + this.location + ':' + (this.beansPerDay + this.toGoPoundsPerDay).toFixed(1);
   },
 };
 
@@ -450,11 +474,31 @@ sLU.totalToGoPounds();
 sLU.totalPoundsOfBeansNeeded();
 
 var parentSLUUl = document.getElementById('sLUUl');
-for (var i = 0; i < pikePlace.storeHours.length; i++) {
-  var sLUli = document.createElement('li');
-  sLUli.textContent = sLU.stringValue[i];
-  parentPikePlaceUl.appendChild(childPikePlaceli);
+for (var z = 0; z < pikePlace.storeHours.length; z++) {
+  var childSLUli = document.createElement('li');
+  childSLUli.textContent = sLU.stringValue[z];
+  parentSLUUl.appendChild(childSLUli);
 }
+
+var parentSLUTotalCustomers = document.getElementById('sLUUl');
+var childSLUTotalCustomersli = document.createElement('li');
+childSLUTotalCustomersli.textContent = sLU.totalCustomers();
+parentSLUTotalCustomers.appendChild(childSLUTotalCustomersli);
+
+var parentSLUTotalCups = document.getElementById('sLUUl');
+var childSLUTotalCupsli = document.createElement('li');
+childSLUTotalCupsli.textContent = sLU.totalCups();
+parentSLUTotalCups.appendChild(childSLUTotalCupsli);
+
+var parentSLUTotalToGoPounds = document.getElementById('sLUUl');
+var childSLUTotalToGoPoundsli = document.createElement('li');
+childSLUTotalToGoPoundsli.textContent = sLU.totalToGoPounds();
+parentSLUTotalToGoPounds.appendChild(childSLUTotalToGoPoundsli);
+
+var parentSLUTotalPoundsOfBeansNeededUl = document.getElementById('sLUUl');
+var childSLUTotalPoundsOfBeansNeededli = document.createElement('li');
+childSLUTotalPoundsOfBeansNeededli.textContent = sLU.totalPoundsOfBeansNeeded();
+parentSLUTotalPoundsOfBeansNeededUl.appendChild(childSLUTotalPoundsOfBeansNeededli);
 
 var sTAirport = {
 
@@ -534,7 +578,7 @@ var sTAirport = {
     return 'Total to-go pound packages sold at ' + this.location + ':' + this.toGoPoundsPerDay.toFixed(1);
   },
   totalPoundsOfBeansNeeded: function() {
-    return 'Total pounds of beans needed at ' + this.location + ':' + (this.totalPoundsOfBeansNeeded + this.toGoPoundsPerDay.toFixed(1));
+    return 'Total pounds of beans needed at ' + this.location + ':' + (this.beansPerDay + this.toGoPoundsPerDay).toFixed(1);
   },
 };
 
@@ -550,3 +594,29 @@ sTAirport.totalCustomers();
 sTAirport.totalCups();
 sTAirport.totalToGoPounds();
 sTAirport.totalPoundsOfBeansNeeded();
+
+var parentSTAUl = document.getElementById('sTAUl');
+for (var h = 0; h < sTAirport.storeHours.length; h++) {
+  var childSTAli = document.createElement('li');
+  childSTAli.textContent = sTAirport.stringValue[h];
+  parentSTAUl.appendChild(childSTAli);
+}
+var parentSTATotalCustomers = document.getElementById('sTAUl');
+var childSTATotalCustomersli = document.createElement('li');
+childSTATotalCustomersli.textContent = sTAirport.totalCustomers();
+parentSTATotalCustomers.appendChild(childSTATotalCustomersli);
+
+var parentSTATotalCups = document.getElementById('sTAUl');
+var childSTATotalCupsli = document.createElement('li');
+childSTATotalCupsli.textContent = sTAirport.totalCups();
+parentSTATotalCups.appendChild(childSTATotalCupsli);
+
+var parentSTATotalToGoPounds = document.getElementById('sTAUl');
+var childSTATotalToGoPoundsli = document.createElement('li');
+childSTATotalToGoPoundsli.textContent = sTAirport.totalToGoPounds();
+parentSTATotalToGoPounds.appendChild(childSTATotalToGoPoundsli);
+
+var parentSTATotalPoundsOfBeansNeededUl = document.getElementById('sTAUl');
+var childSTATotalPoundsOfBeansNeededli = document.createElement('li');
+childSTATotalPoundsOfBeansNeededli.textContent = sTAirport.totalPoundsOfBeansNeeded();
+parentSTATotalPoundsOfBeansNeededUl.appendChild(childSTATotalPoundsOfBeansNeededli);
